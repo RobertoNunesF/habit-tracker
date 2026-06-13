@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
 
 
 //MVC
@@ -10,3 +11,5 @@ use Illuminate\Support\Facades\Route;
 //Controller -> Business logic
 
 Route::get('/', [SiteController::class, 'index']);
+
+Route::get('/login', [LoginController::class, 'index']);
