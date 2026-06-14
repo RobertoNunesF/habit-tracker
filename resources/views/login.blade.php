@@ -1,13 +1,13 @@
 <x-layout>
     <main class="py-10">
         
-        <section class="mt-4 bg-white max-w-150 mx-auto border-2 p-10">
+        <section class="mt-4 bg-white max-w-150 mx-auto border-2 p-10 pb-6">
            <h1 class="font-bold text-4xl mb-4">Faça login</h1>
 
             <p>Insira seus dados para acessar</p>
 
 
-        <form action="/login" method="POST" class="mt-4 flex flex-col gap-4">
+        <form action="{{route('auth.login')}}" method="POST" class="mt-4 flex flex-col gap-4">
             @csrf
 
 
@@ -54,6 +54,10 @@
                 Entrar
             </button>
         </form>
+
+        <p class="text-center mt-4">
+            Não tem uma conta? <a href="{{route('site.register')}}" class="underline hover:opacity-50 transition">Registrar-se</a>
+        </p>
        </section>
     </main>
 </x-layout>
