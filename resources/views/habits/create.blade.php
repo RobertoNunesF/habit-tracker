@@ -7,7 +7,7 @@
         <section class="mt-4 bg-white max-w-150 mx-auto border-2 p-10 pb-6">
 
 
-        <form action="{{route('habit.store')}}" method="POST">
+        <form action="{{route('habits.store')}}" method="POST">
             @csrf
 
             <div class="flex flex-col gap-2 mb-2">

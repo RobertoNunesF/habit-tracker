@@ -7,7 +7,7 @@
         <section class="mt-4 bg-white max-w-150 mx-auto border-2 p-10 pb-6">
 
 
-        <form action="{{route('habit.update', $habit->id)}}" method="POST" class="flex flex-col">
+        <form action="{{route('habits.update', $habit->id)}}" method="POST" class="flex flex-col">
             @csrf
             @method('PUT')
 

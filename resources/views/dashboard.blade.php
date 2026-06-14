@@ -2,7 +2,7 @@
     <main class="py-10">
        <h1 class="font-bold text-4xl text-center">Dashboard</h1>
 
-       <a href="{{ route('habit.create') }}" class="p-2 border-2 bg-white font-bold">Cadastrar Hábito</a>
+       <a href="{{ route('habits.create') }}" class="p-2 border-2 bg-white font-bold">Cadastrar Hábito</a>
 
        @session('success')
 
@@ -24,11 +24,11 @@
                     <p class="font-bold text-xl">- {{$item->name}}</p>
                     <p>[{{$item->habitLogs->count()}}]</p>
 
-                    <a href="{{route('habit.edit', $item->id)}}" class="bg-white text-white p-1 hover:opacity-50 transition">
+                    <a href="{{route('habits.edit', $item->id)}}" class="bg-white text-white p-1 hover:opacity-50 transition">
                         <x-icons.edit />
                     </a>
 
-                    <form action="{{ route('habit.destroy', $item) }}" method="POST">
+                    <form action="{{ route('habits.destroy', $item) }}" method="POST">
                         @csrf
                         @method('DELETE')
 
@@ -41,7 +41,7 @@
             @empty
 
             <p>Ainda não possui nenhum hábito cadastrado</p>
-            <a href="{{route('habit.create')}}" class="bg-white p-2 border-2">Cadastre um novo hábito</a>
+            <a href="{{route('habits.create')}}" class="bg-white p-2 border-2">Cadastre um novo hábito</a>
             @endforelse
         </ul>
     </div>
