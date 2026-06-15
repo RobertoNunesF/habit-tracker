@@ -5,7 +5,7 @@
                 <a href="{{route('habits.index')}}" class="{{Route::is('habits.index') ? 'font-bold underline' : ''}} text-lg border-r-2 border-habit-orange pr-2 hover:underline">Hoje</a>
             </li> 
             <li>
-                <a href="#" class="text-lg border-r-2 border-habit-orange pr-2 hover:underline">Histórico</a>
+                <a href="{{route('habits.history')}}" class="{{Route::is('habits.history') ? 'font-bold underline' : ''}} text-lg border-r-2 border-habit-orange pr-2 hover:underline">Histórico</a>
             </li> 
             <li>
                 <a href="#" class="text-lg border-r-2 border-habit-orange pr-2 hover:underline">Calendário</a>
