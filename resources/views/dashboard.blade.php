@@ -3,14 +3,6 @@
 
     <x-navbar />
 
-       @session('success')
-
-       <div class="flex">
-           <p class="bg-green-100 border-2 border-green-400 text-green-700 p-3 rounded mb-4">{{session('success')}}</p>
-
-       </div>
-
-       @endsession
 
     <div>
 
