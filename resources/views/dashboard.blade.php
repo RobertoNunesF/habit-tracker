@@ -19,18 +19,11 @@
 
             @forelse($habits as $item)
 
-                @php
-                    $wasCompletedToday = $item->habitLogs
-                        ->where('user_id', auth()->id())
-                        ->where('completed_at', \Carbon\Carbon::today()->toDateString())
-                        ->isNotEmpty();
-                @endphp
-
             <li class="habit-shadow-lg p-2 bg-[#FFDAAC]">
                 <form action="{{route('habits.toggle', $item->id)}}" method="POST" class="flex gap-2 items-center" id="form-{{$item->id}}">
                     @csrf
 
-                    <input type="checkbox" class="w-5 h-5" {{$item->is_completed ? 'checked' : ''}} {{$wasCompletedToday ? 'checked' : ''}} onchange="document.getElementById('form-{{$item->id}}').submit()"/>
+                    <input type="checkbox" class="w-5 h-5" {{$item->is_completed ? 'checked' : ''}} {{$item->wasCompletedToday() ? 'checked' : ''}} onchange="document.getElementById('form-{{$item->id}}').submit()"/>
                     <p class="font-bold text-lg">{{$item->name}}</p>
                 </form>
             </li>

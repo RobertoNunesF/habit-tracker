@@ -5,11 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\HabitRequest;
 use App\Models\Habit;
 use App\Models\HabitLog;
-use Illuminate\Http\Request;
-use Illuminate\View\View;
-use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class HabitController extends Controller
 {
@@ -18,7 +17,10 @@ class HabitController extends Controller
     public function index(): View
     {
 
-        $habits = Auth::user()->habits;
+        $habits = Auth::user()->habits()
+            ->with('habitLogs')
+            ->get();
+
         return view('dashboard', compact('habits'));
     }
     /**
