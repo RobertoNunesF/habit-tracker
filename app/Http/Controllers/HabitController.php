@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\HabitRequest;
 use App\Models\Habit;
+use App\Models\HabitLog;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Redirect;
 
 class HabitController extends Controller
 {
@@ -14,7 +18,7 @@ class HabitController extends Controller
     public function index(): View
     {
 
-        $habits = auth()->user()->habits;
+        $habits = Auth::user()->habits;
         return view('dashboard', compact('habits'));
     }
     /**
@@ -32,7 +36,9 @@ class HabitController extends Controller
     {
         $validated = $request->validated();
 
-        auth()->user()->habits()->create($validated);
+        
+
+        Auth::user()->habits->create($validated);
 
         return redirect()
             ->route('habits.index')
@@ -53,7 +59,7 @@ class HabitController extends Controller
      */
     public function update(HabitRequest $request, Habit $habit)
     {
-        if($habit->user_id !== auth()->user()->id) {
+        if($habit->user_id !== Auth::user()->id) {
             abort(code: 403, message:'Esse hábito não é seu');
         }
 
@@ -70,7 +76,7 @@ class HabitController extends Controller
      */
     public function destroy(Habit $habit)
     {
-        if($habit->user_id !== auth()->user()->id) {
+        if($habit->user_id !== Auth::user()->id) {
             abort(code: 403, message:'Esse hábito não é seu');
         }
 
@@ -84,8 +90,38 @@ class HabitController extends Controller
     public function settings() 
     {
         
-        $habits = auth()->user()->habits;
+        $habits = Auth::user()->habits;
 
         return (view('habits.settings', compact('habits')));
+    }
+
+    public function toggle(Habit $habit)
+    {
+        if($habit->user_id !== Auth::user()->id) {
+            abort(code: 403, message:'Esse hábito não é seu');
+        }
+
+        $today = Carbon::today()->toDateString();
+
+        $log = HabitLog::query()
+            ->where('habit_id', $habit->id)
+            ->where('completed_at', $today)
+            ->first();
+
+        if($log) {
+            $log->delete();
+            $message = 'Hábito desmarcado para hoje';
+        } else {
+            HabitLog::create([
+                'user_id' => Auth::user()->id,
+                'habit_id' => $habit->id,
+                'completed_at' => $today,
+            ]);
+            $message = 'Hábito concluido. Parabéns! 👏';
+        }
+
+        return redirect()
+            ->route('habits.index')
+            ->with('success', $message);
     }
 }
