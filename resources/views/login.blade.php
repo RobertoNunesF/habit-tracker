@@ -1,7 +1,7 @@
 <x-layout>
     <main class="py-10">
         
-        <section class="mt-4 bg-white max-w-150 mx-auto border-2 p-10 pb-6">
+        <section class="mt-4 bg-white max-w-150 mx-auto p-10 pb-6 habit-shadow-lg">
            <h1 class="font-bold text-4xl mb-4">Faça login</h1>
 
             <p>Insira seus dados para acessar</p>
@@ -18,7 +18,7 @@
             type="email" 
             name="email" 
             placeholder="your@email.com" 
-            class="bg-white p-2 border-2 @error ('email') border-red-500 @enderror"
+            class="bg-white p-2 habit-shadow @error ('email') border-red-500 @enderror"
             >
 
 
@@ -29,14 +29,14 @@
             @enderror
             </div>
 
-            <div class="flex flex-col gap-4 mt-4">
+            <div class="flex flex-col gap-4 mt-4 ">
             <label for="password">Senha</label>
 
             <input 
             type="password" 
             name="password" 
             placeholder="********" 
-            class="bg-white p-2 border-2 @error ('password') border-red-500 @enderror"
+            class="bg-white p-2 habit-shadow @error ('password') border-red-500 @enderror"
             >
 
 
@@ -49,7 +49,7 @@
 
             <button 
             type="submit"
-            class="bg-white border-2 p-2"
+            class="p-2 bg-habit-orange habit-shadow-lg habit-btn"
             >
                 Entrar
             </button>
