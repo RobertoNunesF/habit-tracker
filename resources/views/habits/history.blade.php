@@ -3,6 +3,12 @@
 
     <x-navbar />
 
+    <div class="my-4">
+        @foreach($avaliableYears as $year)
+        <a href="{{route('habits.history', $year)}}" class="habit-btn habit-shadow-lg p-2 inline-block {{$selectedYear == $year ? 'bg-habit-orange' : 'bg-white'}}">{{$year}}</a>
+        @endforeach
+    </div>
+
        @session('success')
 
        <div class="flex">
