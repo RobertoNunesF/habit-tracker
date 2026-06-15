@@ -14,7 +14,7 @@
 
     <div>
         @forelse($habits as $habit)
-            <x-contribution :$habit :year="$selectedYear" />
+            <x-contribution :$habit :year="$selectedYear" :weeks="$weeks" />
         @empty
             <div>
                 <p class="text-black">

@@ -125,9 +125,10 @@ class HabitController extends Controller
             ->with('success', $message);
     }
 
-    public function history()
+    public function history(Request $request)
     {
         $selectedYear = Carbon::now()->year;
+        $weeks = Habit::generateYearGrid($selectedYear);
 
         $startDate = Carbon::create($selectedYear, month: 1, day: 1);
         $endDate = Carbon::create($selectedYear, month: 12, day: 31, hour: 23, minute:59, second: 59);
@@ -138,6 +139,7 @@ class HabitController extends Controller
             }])
             ->get();
 
-        return view('habits.history', compact('habits', 'selectedYear'));
+
+        return view('habits.history', compact('habits', 'selectedYear', 'weeks'));
     }
 }
